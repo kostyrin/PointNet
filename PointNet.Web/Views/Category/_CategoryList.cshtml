@@ -1,0 +1,19 @@
+﻿@model IEnumerable<PointNet.Model.Category>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="row">
+    <div class="col-md-4"><strong>Actions</strong></div>
+    <div class="col-md-4"><strong>Name</strong></div>
+    <div class="col-md-4"><strong>Description</strong></div>
+</div>
+@foreach(var item in Model)
+{
+<div class="row">
+    <div class="col-md-4">@Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }), @Ajax.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new AjaxOptions { Confirm = "Delete Category?", HttpMethod = "Post", UpdateTargetId = "divCategoryList" }) </div>
+    <div class="col-md-4">@item.Name</div>
+    <div class="col-md-4">@item.Description</div>
+</div>
+}
