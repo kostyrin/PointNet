@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Security.Claims;
+using AutoMapper;
+using PointNet.Common.Logging;
 using PointNet.Web.ViewModels;
 using PointNet.Model.Commands;
 using PointNet.Web.Core.Models;
@@ -23,9 +25,11 @@ namespace PointNet.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ICommandBus commandBus;
-        private readonly IUserRepository userRepository;
-        private readonly ApplicationUserManager<PointNetUser, int> userManager;
+        private readonly ICommandBus _commandBus;
+        private readonly IUserRepository _userRepository;
+        private readonly ApplicationUserManager<PointNetUser, int> _userManager;
+        private readonly ILogger _logger;
+        private readonly IMappingEngine _mapper;
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -35,11 +39,14 @@ namespace PointNet.Web.Controllers
             }
         }
 
-        public AccountController(ICommandBus commandBus, IUserRepository userRepository, ApplicationUserManager<PointNetUser, int> userManager)
+        public AccountController(IMappingEngine mapper, ICommandBus commandBus, IUserRepository userRepository, ApplicationUserManager<PointNetUser, int> userManager
+            , ILogger logger)
         {
-            this.commandBus = commandBus;
-            this.userRepository = userRepository;
-            this.userManager = userManager;
+            this._commandBus = commandBus;
+            this._userRepository = userRepository;
+            this._userManager = userManager;
+            _logger = logger;
+            _mapper = mapper;
         }
 
         public ActionResult LogOff()
@@ -64,12 +71,12 @@ namespace PointNet.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = this.userRepository.Get(x => x.Email.ToUpper() == form.Email.ToUpper() && Md5Encrypt.Md5EncryptPassword(form.Password) == x.PasswordHash);
+                var user = this._userRepository.Get(x => x.Email.ToUpper() == form.Email.ToUpper() && Md5Encrypt.Md5EncryptPassword(form.Password) == x.PasswordHash);
                 if (user != null)
                 {
                     PointNetUser appUser = new PointNetUser(user);
                     AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                    AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true, RedirectUri = returnUrl }, await appUser.GenerateUserIdentityAsync(userManager));
+                    AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true, RedirectUri = returnUrl }, await appUser.GenerateUserIdentityAsync(_userManager));
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -88,39 +95,48 @@ namespace PointNet.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var command = new UserRegisterCommand
+                try
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Password = model.Password,
-                    Activated = true,
-                    RoleId = (Int32)UserRoles.User
-                };
+                    var command = new UserRegisterCommand
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Email = model.Email,
+                        Password = model.Password,
+                        Activated = true,
+                        RoleId = (Int32)UserRoles.User
+                    };
 
-                IEnumerable<ValidationResult> errors = commandBus.Validate(command);
-                ModelState.AddModelErrors(errors);
-                if (ModelState.IsValid)
-                {
-                    var result = commandBus.Submit(command);
-                    if (result.Success)
+                    IEnumerable<ValidationResult> errors = _commandBus.Validate(command);
+                    ModelState.AddModelErrors(errors);
+                    if (ModelState.IsValid)
                     {
-                        var user = this.userRepository.Get(x => x.Email.ToUpper() == command.Email.ToUpper() && Md5Encrypt.Md5EncryptPassword(command.Password) == x.PasswordHash);
-                        PointNetUser appUser = new PointNetUser()
+                        var result = _commandBus.Submit(command);
+                        if (result.Success)
                         {
-                            Id = user.UserId,
-                            RoleName = Enum.GetName(typeof(UserRoles), user.RoleId),
-                            UserName = user.DisplayName
-                        };
-                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                        AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true }, await appUser.GenerateUserIdentityAsync(userManager));
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "An unknown error occurred.");
-                    }
+                            var user = this._userRepository.Get(x => x.Email.ToUpper() == command.Email.ToUpper() && Md5Encrypt.Md5EncryptPassword(command.Password) == x.PasswordHash);
+                            PointNetUser appUser = new PointNetUser()
+                            {
+                                Id = user.UserId,
+                                RoleName = Enum.GetName(typeof(UserRoles), user.RoleId),
+                                UserName = user.DisplayName
+                            };
+                            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+                            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true }, await appUser.GenerateUserIdentityAsync(_userManager));
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "An unknown error occurred.");
+                        }
+                    }        
                 }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex);
+                    throw;
+                }
+                
                 return View(model);
             }
 
@@ -150,11 +166,11 @@ namespace PointNet.Web.Controllers
                     OldPassword = form.OldPassword,
                     NewPassword = form.NewPassword
                 };
-                IEnumerable<ValidationResult> errors = commandBus.Validate(command);
+                IEnumerable<ValidationResult> errors = _commandBus.Validate(command);
                 ModelState.AddModelErrors(errors);
                 if (ModelState.IsValid)
                 {
-                    var result = commandBus.Submit(command);
+                    var result = _commandBus.Submit(command);
                     if (result.Success)
                     {
                         return RedirectToAction("ChangePasswordSuccess");

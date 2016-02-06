@@ -1,8 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using System.Reflection;
+using AutoMapper.Mappers;
+using PointNet.Common.Logging;
 using PointNet.Data;
+using PointNet.Data.Mappings;
 using PointNet.Model;
 using PointNet.CommandProcessor.Command;
 using PointNet.CommandProcessor.Dispatcher;
@@ -14,6 +18,7 @@ using Microsoft.AspNet.Identity;
 using NHibernate;
 using AutoMapper;
 using Microsoft.Owin.Security;
+
 
 namespace PointNet.Web
 {
@@ -36,6 +41,9 @@ namespace PointNet.Web
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterModule(new AutofacWebTypesModule());
 
+            //Log
+            builder.Register(l => LoggingModule.GetLogger(typeof(Object))).As<ILogger>().InstancePerLifetimeScope();
+
             //Command Query Responsibility Separation objects
             var services = Assembly.Load("PointNet.Domain");
             builder.RegisterAssemblyTypes(services).AsClosedTypesOf(typeof(ICommandHandler<>)).InstancePerRequest();
@@ -51,15 +59,7 @@ namespace PointNet.Web
             builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).InstancePerRequest();
 
             //Automapper objects
-            //builder.Register(c => new ConfigurationStore(new TypeMapFactory(), AutoMapper.Mappers.MapperRegistry.Mappers)).AsImplementedInterfaces().SingleInstance();
-
-            //builder.Register(c => new MapperConfiguration(cfg =>
-            //{
-            //    cfg.
-            //})).AsImplementedInterfaces().SingleInstance();
-            //builder.Register(c => Mapper.Engine).As<IMappingEngine>().SingleInstance();
-            builder.RegisterType<MappingEngine>().As<IMappingEngine>();
-            builder.RegisterType<TypeMapFactory>().As<ITypeMapFactory>().SingleInstance();
+            RegisterAutomapper(builder);
 
             //Microsoft Identity objects
             builder.RegisterType<PointNetUser>().InstancePerRequest();
@@ -74,6 +74,23 @@ namespace PointNet.Web
             IContainer container = builder.Build();
  
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-        }        
+        }
+
+        private static void RegisterAutomapper(ContainerBuilder builder)
+        {
+            
+            var conf = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<DomainToCommandMappingProfile>();
+                cfg.AddProfile<CommandToDomainMappingProfile>();
+                //cfg.AddProfile<DomainToDTOMappingProfile>();
+            }, MapperRegistry.Mappers, TypeMapObjectMapperRegistry.Mappers);
+
+            builder.Register(c => conf).As<IConfigurationProvider>().SingleInstance();
+            builder.Register(c => conf.CreateMapper()).As<IMapper>();
+
+            builder.RegisterType<MappingEngine>().As<IMappingEngine>();
+            builder.RegisterType<TypeMapFactory>().As<ITypeMapFactory>().SingleInstance();
+        }
     }
 }

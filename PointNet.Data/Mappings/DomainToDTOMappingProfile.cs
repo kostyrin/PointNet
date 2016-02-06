@@ -10,6 +10,11 @@ namespace PointNet.Data.Mappings
 {
     public class DomainToDTOMappingProfile : Profile
     {
+        private readonly IConfiguration _configuration;
+        public DomainToDTOMappingProfile(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public override string ProfileName
         {
             get { return "DomainToDTOMappingProfile"; }
@@ -17,9 +22,9 @@ namespace PointNet.Data.Mappings
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Category, DTOCategory>();
-            Mapper.CreateMap<Expense, DTOExpense>();
-            Mapper.CreateMap<User, DTOUser>();
+            //_configuration.CreateMap<Category, DTOCategory>("Category");
+            //Mapper.CreateMap<Expense, DTOExpense>();
+            //Mapper.CreateMap<User, DTOUser>();
         }
     }
 }

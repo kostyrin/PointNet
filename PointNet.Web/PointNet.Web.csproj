@@ -63,6 +63,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -286,6 +290,10 @@
     <ProjectReference Include="..\PointNet.CommandProcessor\PointNet.CommandProcessor.csproj">
       <Project>{90b8bd02-a12a-4618-8929-c68e5035f179}</Project>
       <Name>PointNet.CommandProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PointNet.Common\PointNet.Common.csproj">
+      <Project>{B47BE5DA-5DB1-43D6-9A0D-A68936D39DC5}</Project>
+      <Name>PointNet.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\PointNet.Core\PointNet.Core.csproj">
       <Project>{717e9b90-bde5-4b20-846f-622928581fc9}</Project>

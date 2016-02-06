@@ -13,14 +13,14 @@ namespace PointNet.Data.Infrastructure
     {
         public static void Configure()
         {
-            Mapper.Initialize(x =>
-            {
-                x.AddProfile<DomainToCommandMappingProfile>();
-                x.AddProfile<CommandToDomainMappingProfile>();
-                x.AddProfile<DomainToDTOMappingProfile>();
-            });
+            //Mapper.Initialize(x =>
+            //{
+            //    x.AddProfile<DomainToCommandMappingProfile>();
+            //    x.AddProfile<CommandToDomainMappingProfile>();
+            //    x.AddProfile<DomainToDTOMappingProfile>();
+            //});
 
-            Mapper.AssertConfigurationIsValid();
+            //Mapper.AssertConfigurationIsValid();
         }
     }
 }

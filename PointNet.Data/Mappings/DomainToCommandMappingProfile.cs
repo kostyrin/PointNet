@@ -18,11 +18,11 @@ namespace PointNet.Data
 
         protected override void Configure()
         {
-            Mapper.CreateMap<Category, CreateOrUpdateCategoryCommand>();
-            Mapper.CreateMap<Category, DeleteCategoryCommand>();
-            Mapper.CreateMap<Expense, CreateOrUpdateExpenseCommand>();
-            Mapper.CreateMap<Expense, DeleteExpenseCommand>();
-            Mapper.CreateMap<User, UserRegisterCommand>().ForMember(x => x.Password, o => o.Ignore());
+            CreateMap<Category, CreateOrUpdateCategoryCommand>();
+            CreateMap<Category, DeleteCategoryCommand>();
+            CreateMap<Expense, CreateOrUpdateExpenseCommand>();
+            CreateMap<Expense, DeleteExpenseCommand>();
+            CreateMap<User, UserRegisterCommand>().ForMember(x => x.Password, o => o.Ignore());
         }
     }
 }
