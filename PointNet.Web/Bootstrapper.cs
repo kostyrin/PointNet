@@ -47,7 +47,7 @@ namespace PointNet.Web
             builder.RegisterAssemblyTypes(typeof(IRepository<User>).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
 
             //NHibernate objects
-            builder.Register(c => PointNet.Data.Infrastructure.ConnectionHelper.BuildSessionFactory("PointNetContainer")).As<ISessionFactory>().SingleInstance();
+            builder.Register(c => ConnectionHelper.BuildSessionFactory("PointNetContainer")).As<ISessionFactory>().SingleInstance();
             builder.Register(c => c.Resolve<ISessionFactory>().OpenSession()).InstancePerRequest();
 
             //Automapper objects

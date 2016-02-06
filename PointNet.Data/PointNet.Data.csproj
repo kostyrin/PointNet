@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conventions\ColumnConvention.cs" />
+    <Compile Include="Conventions\ForeignKeyConstraintNameConvention.cs" />
+    <Compile Include="Conventions\ForeignKeyNameConvention.cs" />
+    <Compile Include="Conventions\PrimaryKeyNameConvention.cs" />
+    <Compile Include="Conventions\ReferenceConvention.cs" />
+    <Compile Include="Conventions\TableNameConvention.cs" />
     <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\ConnectionHelper.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
@@ -92,6 +98,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
