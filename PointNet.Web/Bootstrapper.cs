@@ -87,7 +87,7 @@ namespace PointNet.Web
             }, MapperRegistry.Mappers, TypeMapObjectMapperRegistry.Mappers);
 
             builder.Register(c => conf).As<IConfigurationProvider>().SingleInstance();
-            builder.Register(c => conf.CreateMapper()).As<IMapper>();
+            builder.Register(c => conf.CreateMapper()).As<IMapper>().SingleInstance();
 
             builder.RegisterType<MappingEngine>().As<IMappingEngine>();
             builder.RegisterType<TypeMapFactory>().As<ITypeMapFactory>().SingleInstance();

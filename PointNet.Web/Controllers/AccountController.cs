@@ -119,7 +119,8 @@ namespace PointNet.Web.Controllers
                             {
                                 Id = user.UserId,
                                 RoleName = Enum.GetName(typeof(UserRoles), user.RoleId),
-                                UserName = user.DisplayName
+                                UserName = user.DisplayName,
+                                Email = user.Email
                             };
                             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = true }, await appUser.GenerateUserIdentityAsync(_userManager));
