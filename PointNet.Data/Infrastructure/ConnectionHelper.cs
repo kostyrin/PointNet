@@ -21,19 +21,25 @@ namespace PointNet.Data.Infrastructure
 
         public static FluentConfiguration GetConfiguration(string connString)
         {
+            //return Fluently.Configure()
+            //    .Database(MySQLConfiguration.Standard.ConnectionString(c => c.FromConnectionStringWithKey(connString)))
+            //    .ExposeConfiguration(c => c.SetProperty("command_timeout", (TimeSpan.FromMinutes(5).TotalSeconds).ToString()))
+            //    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>()
+            //    .Conventions.AddFromAssemblyOf<TableNameConvention>());
             return Fluently.Configure()
-                .Database(MySQLConfiguration.Standard.ConnectionString(c => c.FromConnectionStringWithKey(connString)))
-                .ExposeConfiguration(c => c.SetProperty("command_timeout", (TimeSpan.FromMinutes(5).TotalSeconds).ToString()))
+                .Database(PostgreSQLConfiguration.Standard.ConnectionString(c => c.FromConnectionStringWithKey(connString)))
+                //.ExposeConfiguration(c => c.SetProperty("command_timeout", (TimeSpan.FromMinutes(5).TotalSeconds).ToString()))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>()
-                .Conventions.AddFromAssemblyOf<TableNameConvention>());
+                .Conventions.AddFromAssemblyOf<TableNameConvention>()
+                );
         }
 
-        public static void CreateDatabase(string connString)
-        {
-            var configuration = GetConfiguration(connString).BuildConfiguration();
-            var exporter = new SchemaExport(configuration);
-            exporter.Execute(true, true, false);
-            //configuration.BuildSessionFactory();
-        }
+        //public static void CreateDatabase(string connString)
+        //{
+        //    var configuration = GetConfiguration(connString).BuildConfiguration();
+        //    var exporter = new SchemaExport(configuration);
+        //    exporter.Execute(true, true, false);
+        //    //configuration.BuildSessionFactory();
+        //}
     }
 }

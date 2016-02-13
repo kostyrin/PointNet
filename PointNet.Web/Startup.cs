@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using PointNet.Data.Infrastructure;
+using PointNet.Data.SchemaTool;
 
 [assembly: OwinStartupAttribute(typeof(PointNet.Web.Startup))]
 namespace PointNet.Web
@@ -10,7 +11,7 @@ namespace PointNet.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            ConnectionHelper.CreateDatabase("PointNetContainer");
+            SchemaTool.CreatSchema(string.Empty, "PointNetContainer");
         }
     }
 }

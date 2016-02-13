@@ -16,11 +16,11 @@ namespace PointNet.Data.Mappings
             Id(x => x.UserId).GeneratedBy.Identity();
             Map(x => x.Activated).Not.Nullable();
             Map(x => x.DateCreated).Not.Nullable();
-            Map(x => x.Email).Length(255).Unique().Not.Nullable();
+            Map(x => x.Email).Length(150).Unique().Not.Nullable();
             Map(x => x.FirstName).Length(100).Not.Nullable();
-            Map(x => x.LastLoginTime).Nullable();
+            //Map(x => x.LastLoginTime).Nullable();
             Map(x => x.LastName).Length(100).Not.Nullable();
-            Map(x => x.PasswordHash).Length(255).Nullable();
+            Map(x => x.PasswordHash).Length(150).Nullable();
             Map(x => x.RoleId).Not.Nullable();
         }
     }

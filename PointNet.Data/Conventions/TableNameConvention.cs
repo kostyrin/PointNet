@@ -14,7 +14,7 @@ namespace PointNet.Data.Conventions
         {
             string typeName = instance.EntityType.Name;
 
-            instance.Table(typeName.ToLower());
+            instance.Table(Inflector.Inflector.Pluralize(typeName).ToLower());
         }
 
         //private string ToSnakeCase(string name)

@@ -54,6 +54,7 @@
     <Compile Include="DataTransferObjects\DTOExpense.cs" />
     <Compile Include="DataTransferObjects\DTOUser.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Expense.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

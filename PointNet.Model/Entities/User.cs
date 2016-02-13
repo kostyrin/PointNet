@@ -24,7 +24,7 @@ namespace PointNet.Model
         public virtual string LastName { get; set; }
         public virtual string PasswordHash { get; set; }
         public virtual DateTime DateCreated { get; set; }
-        public virtual DateTime? LastLoginTime { get; set; }
+        //public virtual DateTime? LastLoginTime { get; set; }
         public virtual bool Activated { get; set; }
         public virtual int RoleId { get; set; }
 

@@ -31,7 +31,8 @@ namespace PointNet.Data
             CreateMap<UserRegisterCommand, User>().ForMember(x => x.UserId, o => o.Ignore())
                                                          .ForMember(x => x.PasswordHash, o => o.Ignore())
                                                          .ForMember(x => x.DateCreated, o => o.Ignore())
-                                                         .ForMember(x => x.LastLoginTime, o => o.Ignore());
+                                                         //.ForMember(x => x.LastLoginTime, o => o.Ignore())
+                                                         ;
         }
     }
 }
