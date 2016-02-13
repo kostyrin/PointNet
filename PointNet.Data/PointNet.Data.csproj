@@ -78,6 +78,7 @@
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\CommandToDomainMappingProfile.cs" />
+    <Compile Include="Mappings\CustomerMap.cs" />
     <Compile Include="Mappings\DomainToCommandMappingProfile.cs" />
     <Compile Include="Mappings\DomainToDTOMappingProfile.cs" />
     <Compile Include="Mappings\ExpenseMap.cs" />

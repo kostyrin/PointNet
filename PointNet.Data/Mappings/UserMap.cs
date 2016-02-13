@@ -20,7 +20,7 @@ namespace PointNet.Data.Mappings
             Map(x => x.FirstName).Length(100).Not.Nullable();
             //Map(x => x.LastLoginTime).Nullable();
             Map(x => x.LastName).Length(100).Not.Nullable();
-            Map(x => x.PasswordHash).Length(150).Nullable();
+            Map(x => x.PasswordHash).Length(256).Nullable();
             Map(x => x.RoleId).Not.Nullable();
         }
     }
