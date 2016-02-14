@@ -79,9 +79,12 @@
     <Compile Include="Mappings\CategoryMap.cs" />
     <Compile Include="Mappings\CommandToDomainMappingProfile.cs" />
     <Compile Include="Mappings\CustomerMap.cs" />
+    <Compile Include="Mappings\CustomerSettingMap.cs" />
     <Compile Include="Mappings\DomainToCommandMappingProfile.cs" />
     <Compile Include="Mappings\DomainToDTOMappingProfile.cs" />
     <Compile Include="Mappings\ExpenseMap.cs" />
+    <Compile Include="Mappings\ItemCustomerMap.cs" />
+    <Compile Include="Mappings\ItemMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

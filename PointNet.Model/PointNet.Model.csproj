@@ -55,7 +55,10 @@
     <Compile Include="DataTransferObjects\DTOUser.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerSetting.cs" />
     <Compile Include="Entities\Expense.cs" />
+    <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\ItemCustomer.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
