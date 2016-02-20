@@ -21,7 +21,7 @@ namespace PointNet.Data.Mappings
             Map(x => x.Password);
             Map(x => x.Host);
             Map(x => x.HostAnother);
-            References(x => x.Customer).NotFound.Ignore().Column("CustomerId");
+            References(x => x.Customer).NotFound.Ignore();
         }
     }
 }

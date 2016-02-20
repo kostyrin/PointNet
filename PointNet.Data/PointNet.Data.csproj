@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conventions\ColumnConvention.cs" />
+    <Compile Include="Conventions\ForeignKeyCompositeIdentityConvention.cs" />
     <Compile Include="Conventions\ForeignKeyConstraintNameConvention.cs" />
+    <Compile Include="Conventions\ForeignKeyConvention.cs" />
     <Compile Include="Conventions\ForeignKeyNameConvention.cs" />
     <Compile Include="Conventions\PrimaryKeyNameConvention.cs" />
     <Compile Include="Conventions\ReferenceConvention.cs" />

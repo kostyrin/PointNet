@@ -14,20 +14,20 @@ namespace PointNet.Data.Conventions
         {
             string typeName = instance.EntityType.Name;
 
-            instance.Table(Inflector.Inflector.Pluralize(typeName).ToLower());
+            instance.Table(Inflector.Inflector.Pluralize(ToSnakeCase(typeName)).ToLower());
         }
 
-        //private string ToSnakeCase(string name)
-        //{
-        //    var result = new StringBuilder(name.Length);
-        //    for (int i = 0; i < name.Length; i++)
-        //    {
-        //        if (i > 0 && char.IsUpper(name[i]))
-        //            result.Append('_').Append(char.ToLower(name[i]));
-        //        else
-        //            result.Append(char.ToLower(name[i]));
-        //    }
-        //    return result.ToString();
-        //}
+        private string ToSnakeCase(string name)
+        {
+            var result = new StringBuilder(name.Length);
+            for (int i = 0; i < name.Length; i++)
+            {
+                if (i > 0 && char.IsUpper(name[i]))
+                    result.Append('_').Append(char.ToLower(name[i]));
+                else
+                    result.Append(char.ToLower(name[i]));
+            }
+            return result.ToString();
+        }
     }
 }

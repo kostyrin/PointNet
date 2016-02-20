@@ -16,8 +16,10 @@ namespace PointNet.Data.Mappings
             Map(x => x.NameCustomer);
             Map(x => x.Code);
             Map(x => x.IsActive);
-            References(x => x.Customer).NotFound.Ignore();
-            References(x => x.Item).NotFound.Ignore();
+            References(x => x.Customer).NotFound.Ignore().Column("Customer_Id");
+            References(x => x.Item).NotFound.Ignore().Column("Item_Id");
+            CompositeId().Mapped().KeyReference(x => x.Customer, "customer_id").KeyReference(x => x.Item, "item_id");
+
         }
     }
 }

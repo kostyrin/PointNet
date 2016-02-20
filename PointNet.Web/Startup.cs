@@ -1,5 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using System.Web.Mvc;
+using Autofac;
+using Microsoft.Owin;
 using Owin;
+using PointNet.Common.Logging;
 using PointNet.Data.Infrastructure;
 using PointNet.Data.SchemaTool;
 
@@ -10,8 +13,12 @@ namespace PointNet.Web
     {
         public void Configuration(IAppBuilder app)
         {
+            var log = DependencyResolver.Current.GetService<ILogger>();
+            log.Info("config");
             ConfigureAuth(app);
+            log.Info("create schema");
             SchemaTool.CreatSchema(string.Empty, "PointNetContainer");
+            log.Info("schema ready");
         }
     }
 }

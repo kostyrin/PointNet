@@ -15,5 +15,7 @@ namespace PointNet.Model
         public virtual bool IsActive { get; set; }
         public virtual IList<Item> SubItems { get; set; }
 
+        public virtual IList<ItemCustomer> ItemCustomers { get; set; }
+
     }
 }

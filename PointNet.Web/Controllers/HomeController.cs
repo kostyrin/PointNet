@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NHibernate;
+using PointNet.Common.Logging;
 using PointNet.Data.Infrastructure;
 
 namespace PointNet.Web.Controllers
@@ -11,9 +12,13 @@ namespace PointNet.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ISessionFactory _sessionFactory;
-        public HomeController(ISessionFactory sessionFactory)
+        private readonly ILogger _logger;
+
+        public HomeController(ISessionFactory sessionFactory
+            , ILogger logger)
         {
             _sessionFactory = sessionFactory;
+            _logger = logger;
         }
         public ActionResult Index()
         {
