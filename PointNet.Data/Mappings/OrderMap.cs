@@ -8,16 +8,12 @@ using PointNet.Model;
 
 namespace PointNet.Data.Mappings
 {
-    public class LotMap : ClassMap<Lot>
+    public class OrderMap : ClassMap<Order>
     {
-        public LotMap()
+        public OrderMap()
         {
-            Id(x => x.LotId);
-            Map(x => x.Price);
-            Map(x => x.Stamp);
-            Map(x => x.Type);
-
-            References(x => x.EventLine);
+            Id(o => o.OrderId);
+            //References(o => o.ItemCustomer).NotFound.Ignore().Column("item_customer_id");
         }
     }
 }

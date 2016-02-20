@@ -18,7 +18,7 @@ namespace PointNet.Data.Mappings
 
             References(x => x.Customer);
             References(x => x.Event);
-
+            HasMany(x => x.Lots).LazyLoad().Inverse().Cascade.All();
         }
     }
 }

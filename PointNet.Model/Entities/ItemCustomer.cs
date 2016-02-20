@@ -14,6 +14,7 @@ namespace PointNet.Model
         public virtual bool IsActive { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Item Item { get; set; }
+        public virtual IList<Order> Orders { get; set; }
 
         public override bool Equals(object obj)
         {

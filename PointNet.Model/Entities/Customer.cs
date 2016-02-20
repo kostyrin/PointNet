@@ -18,6 +18,7 @@ namespace PointNet.Model
         public virtual IList<Customer> SubCustomers { get; set; }
         public virtual IList<CustomerSetting> Settings { get; set; }
         public virtual IList<ItemCustomer> ItemCustomers { get; set; }
+        public virtual IList<Event> Events { get; set; }
         public virtual IList<EventLine> Lines { get; set; }
     }
 }

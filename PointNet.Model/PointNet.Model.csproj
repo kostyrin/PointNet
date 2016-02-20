@@ -62,6 +62,7 @@
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\ItemCustomer.cs" />
     <Compile Include="Entities\Lot.cs" />
+    <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -20,7 +20,8 @@ namespace PointNet.Data.Mappings
             References(x => x.Parent).NotFound.Ignore().Column("Parent_Id");
             HasMany(x => x.SubCustomers).Cascade.All().KeyColumn("Parent_Id");
             HasMany(x => x.Settings).LazyLoad().Inverse().Cascade.All();
-            //HasMany(x => x.ItemCustomers).LazyLoad().Inverse().Cascade.All();
+            HasMany(x => x.Events).LazyLoad().Inverse().Cascade.All();
+            HasMany(x => x.Lines).LazyLoad().Inverse().Cascade.All();
         }
     }
 }
