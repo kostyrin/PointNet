@@ -141,6 +141,9 @@
     <Compile Include="Authentication\ApplicationUserManager.cs" />
     <Compile Include="Authentication\DefaultUserRoleStore.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Mappings\DomainToFormModelMappingProfile.cs" />
+    <Compile Include="Mappings\FromModelToCommandMappingProfile.cs" />
+    <Compile Include="Models\CustomerFormModel.cs" />
     <Compile Include="Models\PointNetUser.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

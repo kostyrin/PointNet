@@ -46,8 +46,16 @@
   <ItemGroup>
     <Compile Include="Commands\Category\CreateOrUpdateCategoryCommand.cs" />
     <Compile Include="Commands\Category\DeleteCategoryCommand.cs" />
+    <Compile Include="Commands\Customer\CreateOrUpdateCustomerCommand.cs" />
+    <Compile Include="Commands\Customer\CreateOrUpdateCustomerSettingCommand.cs" />
+    <Compile Include="Commands\Event\CreateOrUpdateEventCommand.cs" />
+    <Compile Include="Commands\Event\CreateOrUpdateEventLineCommand.cs" />
     <Compile Include="Commands\Expense\CreateOrUpdateExpenseCommand.cs" />
     <Compile Include="Commands\Expense\DeleteExpenseCommand.cs" />
+    <Compile Include="Commands\Item\CreateOrUpdateItemCommand.cs" />
+    <Compile Include="Commands\Item\CreateOrUpdateItemCustomerCommand.cs" />
+    <Compile Include="Commands\Lot\CreateOrUpdateLotCommand.cs" />
+    <Compile Include="Commands\Order\CreateOrUpdateOrderCommand.cs" />
     <Compile Include="Commands\Security\ChangePasswordCommand.cs" />
     <Compile Include="Commands\Security\UserRegisterCommand.cs" />
     <Compile Include="DataTransferObjects\DTOCategory.cs" />

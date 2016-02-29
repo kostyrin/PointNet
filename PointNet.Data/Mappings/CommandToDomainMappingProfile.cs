@@ -33,6 +33,23 @@ namespace PointNet.Data
                                                          .ForMember(x => x.DateCreated, o => o.Ignore())
                                                          //.ForMember(x => x.LastLoginTime, o => o.Ignore())
                                                          ;
+            CreateMap<CreateOrUpdateCustomerCommand, Customer>()
+                .ForMember(c => c.Events, o => o.Ignore())
+                .ForMember(c => c.Settings, o => o.Ignore())
+                .ForMember(c => c.ItemCustomers, o => o.Ignore())
+                .ForMember(c => c.Events, o => o.Ignore())
+                .ForMember(c => c.Lines, o => o.Ignore())
+                //.ForMember(c => c.SubCustomers, o => o.Ignore())
+                ;
+            CreateMap<CreateOrUpdateCustomerSettingCommand, CustomerSetting>();
+            CreateMap<CreateOrUpdateItemCommand, Item>()
+                //.ForMember(c => c.SubItems, o => o.Ignore())
+                .ForMember(c => c.ItemCustomers, o => o.Ignore());
+            CreateMap<CreateOrUpdateItemCustomerCommand, ItemCustomer>().ForMember(i => i.Orders, o => o.Ignore());
+            CreateMap<CreateOrUpdateEventCommand, Event>().ForMember(e => e.Lines, o => o.Ignore());
+            CreateMap<CreateOrUpdateEventLineCommand, EventLine>().ForMember(e => e.Lots, o => o.Ignore());
+            CreateMap<CreateOrUpdateLotCommand, Lot>();
+            CreateMap<CreateOrUpdateOrderCommand, Order>();
         }
     }
 }

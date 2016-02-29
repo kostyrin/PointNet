@@ -23,6 +23,14 @@ namespace PointNet.Data
             CreateMap<Expense, CreateOrUpdateExpenseCommand>();
             CreateMap<Expense, DeleteExpenseCommand>();
             CreateMap<User, UserRegisterCommand>().ForMember(x => x.Password, o => o.Ignore());
+            CreateMap<Customer, CreateOrUpdateCustomerCommand >();
+            CreateMap<CustomerSetting, CreateOrUpdateCustomerSettingCommand>();
+            CreateMap<Item, CreateOrUpdateItemCommand>();
+            CreateMap<ItemCustomer, CreateOrUpdateItemCustomerCommand>();
+            CreateMap<Event, CreateOrUpdateEventCommand>();
+            CreateMap<EventLine, CreateOrUpdateEventLineCommand>();
+            CreateMap<Lot, CreateOrUpdateLotCommand>();
+            CreateMap<Order, CreateOrUpdateOrderCommand>();
         }
     }
 }

@@ -13,6 +13,7 @@ using PointNet.CommandProcessor.Dispatcher;
 using PointNet.Data.Infrastructure;
 using PointNet.Data.Repositories;
 using PointNet.Web.Core.Authentication;
+using PointNet.Web.Core.Mappings;
 using PointNet.Web.Core.Models;
 using Microsoft.AspNet.Identity;
 using NHibernate;
@@ -53,6 +54,7 @@ namespace PointNet.Web
             builder.RegisterAssemblyTypes(typeof(IRepository<Expense>).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(IRepository<Category>).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(IRepository<User>).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(IRepository<Customer>).Assembly).Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerRequest();
 
             //NHibernate objects
             builder.Register(c => ConnectionHelper.BuildSessionFactory("PointNetContainer")).As<ISessionFactory>().SingleInstance();
@@ -83,6 +85,8 @@ namespace PointNet.Web
             {
                 cfg.AddProfile<DomainToCommandMappingProfile>();
                 cfg.AddProfile<CommandToDomainMappingProfile>();
+                cfg.AddProfile<DomainToFormModelMappingProfile>();
+                cfg.AddProfile<FromModelToCommandMappingProfile>();
                 //cfg.AddProfile<DomainToDTOMappingProfile>();
             }, MapperRegistry.Mappers, TypeMapObjectMapperRegistry.Mappers);
 
