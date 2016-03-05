@@ -15,6 +15,9 @@ namespace PointNet.Model
 
         public virtual Customer Customer { get; set; }
         public virtual Event Event { get; set; }
+        public virtual ItemCustomer ItemCustomer { get; set; }
+
         public virtual IList<Lot> Lots { get; set; }
+
     }
 }

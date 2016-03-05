@@ -16,6 +16,7 @@ namespace PointNet.Data.Conventions
             {
                 key.ForeignKey(string.Format("{0}_{1}_fk", key.Name.ToLower(), instance.EntityType.Name.ToLower()));
             }
+
             //instance.ForeignKey(string.Format("{0}_{1}_fk", instance.Member.Name.ToLower(), instance.EntityType.Name.ToLower()));
         }
     }

@@ -18,7 +18,9 @@ namespace PointNet.Data.Mappings
             Map(x => x.IsActive);
             References(x => x.Parent).NotFound.Ignore().Column("Parent_Id");
             HasMany(x => x.SubItems).Cascade.All().KeyColumn("Parent_Id");
-            //HasMany(x => x.ItemCustomers).LazyLoad().Inverse().Cascade.All();
+            HasMany(x => x.ItemCustomers).LazyLoad().Inverse().Cascade.All();
+            HasMany(x => x.Events).LazyLoad().Inverse().Cascade.All();
+            HasMany(x => x.EventItems).LazyLoad().Inverse().Cascade.All();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace PointNet.Data.Mappings
 
             References(x => x.Customer);
             References(x => x.Event);
+            References(x => x.ItemCustomer);//.Not.Nullable().Column("line_itemcustomer_id"); ; 
             HasMany(x => x.Lots).LazyLoad().Inverse().Cascade.All();
         }
     }

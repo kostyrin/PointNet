@@ -84,6 +84,7 @@
     <Compile Include="Mappings\CustomerSettingMap.cs" />
     <Compile Include="Mappings\DomainToCommandMappingProfile.cs" />
     <Compile Include="Mappings\DomainToDTOMappingProfile.cs" />
+    <Compile Include="Mappings\EventItemMap.cs" />
     <Compile Include="Mappings\EventLineMap.cs" />
     <Compile Include="Mappings\EventMap.cs" />
     <Compile Include="Mappings\ExpenseMap.cs" />

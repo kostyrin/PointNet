@@ -18,9 +18,10 @@ namespace PointNet.Data.Mappings
             Map(x => x.CreateDate);
             Map(x => x.ActivateDate);
             Map(x => x.DeadlineDate);
-            References(x => x.ItemFirst).NotFound.Ignore().Column("item_first_id");
-            References(x => x.ItemSecond).NotFound.Ignore().Column("item_second_id");
+            //References(x => x.ItemFirst).NotFound.Ignore().Column("item_first_id");
+            //References(x => x.ItemSecond).NotFound.Ignore().Column("item_second_id");
             HasMany(x => x.Lines).LazyLoad().Inverse().Cascade.All();
+            HasMany(x => x.EventItems).LazyLoad().Inverse().Cascade.All();
         }
     }
 }

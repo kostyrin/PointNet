@@ -65,6 +65,7 @@
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\CustomerSetting.cs" />
     <Compile Include="Entities\Event.cs" />
+    <Compile Include="Entities\EventItem.cs" />
     <Compile Include="Entities\EventLine.cs" />
     <Compile Include="Entities\Expense.cs" />
     <Compile Include="Entities\Item.cs" />
