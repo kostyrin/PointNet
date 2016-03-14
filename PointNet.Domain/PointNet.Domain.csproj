@@ -51,6 +51,7 @@
     <Compile Include="Handlers\Category\CreateOrUpdateCategoryHandler.cs" />
     <Compile Include="Handlers\Category\DeleteCategoryHandler.cs" />
     <Compile Include="Handlers\Customer\CreateOrUpdateCustomerHandler.cs" />
+    <Compile Include="Handlers\Customer\CreateOrUpdateCustomerSettingHandler.cs" />
     <Compile Include="Handlers\Expense\CreateOrUpdateExpenseHandler.cs" />
     <Compile Include="Handlers\Expense\DeleteExpenseHandler.cs" />
     <Compile Include="Handlers\Security\CanAddUser.cs" />

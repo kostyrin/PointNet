@@ -20,6 +20,9 @@ namespace PointNet.Web.Core.Mappings
         protected override void Configure()
         {
             CreateMap<CustomerFormModel, CreateOrUpdateCustomerCommand>().ForMember(c => c.Parent, o => o.Ignore());
+            //CreateMap<CustomerFormModel, Customer>().ForMember(c => c.Parent, o => o.Ignore());
+            CreateMap<CustomerSettingFormModel, CreateOrUpdateCustomerSettingCommand>().ForMember(c => c.Customer, o => o.Ignore());
+
         }
     }
 }

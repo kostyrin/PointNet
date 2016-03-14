@@ -13,6 +13,8 @@ namespace PointNet.Data.Conventions
         public void Apply(IIdentityInstance instance)
         {
             instance.Column(instance.EntityType.Name.ToLower() + "_id");
+            instance.CustomSqlType("Serial");
+            instance.GeneratedBy.Increment();
         }
     }
 }

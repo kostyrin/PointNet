@@ -17,7 +17,7 @@ namespace PointNet.Web
             log.Info("config");
             ConfigureAuth(app);
             log.Info("create schema");
-            SchemaTool.CreatSchema(string.Empty, "PointNetContainer");
+            //SchemaTool.CreatSchema(string.Empty, "PointNetContainer");
             log.Info("schema ready");
         }
     }

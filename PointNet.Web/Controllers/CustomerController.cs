@@ -17,14 +17,17 @@ namespace PointNet.Web.Controllers
         private readonly ICommandBus _commandBus;
         private readonly IMappingEngine _mapper;
         private readonly ICustomerRepository _customerRepository;
+        private readonly ICustomerSettingRepository _customerSettingRepository;
 
         public CustomerController(ICommandBus command
             , IMappingEngine mapper
-            , ICustomerRepository customerRepository)
+            , ICustomerRepository customerRepository
+            , ICustomerSettingRepository customerSettingRepository)
         {
             _commandBus = command;
             _mapper = mapper;
             _customerRepository = customerRepository;
+            _customerSettingRepository = customerSettingRepository;
         }
         // GET: Customer
         public ActionResult Index()
@@ -44,16 +47,27 @@ namespace PointNet.Web.Controllers
         public ActionResult Create(CustomerFormModel fm)
         {
             var command = _mapper.Mapper.Map<CreateOrUpdateCustomerCommand>(fm);
-            //var command = new CreateOrUpdateCustomerCommand()
-            //{
-            //    Name = fm.Name,
-            //    Code = fm.Code,
-            //    IsActive = fm.IsActive,
-            //    Url = fm.Url
-            //};
+            //var cust = _mapper.Mapper.Map<Customer>(fm);
+            //_customerRepository.Add(cust);
             var result = _commandBus.Submit(command);
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Edit(int id)
+        {
+            var vm = _mapper.Mapper.Map<CustomerFormModel>(_customerRepository.GetById(id));
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CustomerFormModel fm)
+        {
+            var command = _mapper.Mapper.Map<CreateOrUpdateCustomerCommand>(fm);
+            var result = _commandBus.Submit(command);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
