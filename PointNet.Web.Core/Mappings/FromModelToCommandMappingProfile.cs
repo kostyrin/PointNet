@@ -21,7 +21,9 @@ namespace PointNet.Web.Core.Mappings
         {
             CreateMap<CustomerFormModel, CreateOrUpdateCustomerCommand>().ForMember(c => c.Parent, o => o.Ignore());
             //CreateMap<CustomerFormModel, Customer>().ForMember(c => c.Parent, o => o.Ignore());
-            CreateMap<CustomerSettingFormModel, CreateOrUpdateCustomerSettingCommand>().ForMember(c => c.Customer, o => o.Ignore());
+            CreateMap<CustomerSettingFormModel, CreateOrUpdateCustomerSettingCommand>()
+                .ForMember(c => c.Customer, o => o.Ignore())
+                .ForMember(d => d.Type, o => o.MapFrom(s => s.SettingsTypes));
 
         }
     }

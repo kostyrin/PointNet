@@ -22,7 +22,8 @@ namespace PointNet.Web.Core.Mappings
             CreateMap<Customer, CustomerFormModel>();
             CreateMap<CustomerSetting, CustomerSettingFormModel>()
                 .ForMember(d => d.CustomerId, o => o.MapFrom(s => s.Customer.CustomerId))
-                .ForMember(d => d.CustomerName, o => o.MapFrom(s => s.Customer.Name));
+                .ForMember(d => d.CustomerName, o => o.MapFrom(s => s.Customer.Name))
+                .ForMember(d => d.SettingsTypes, o => o.MapFrom(s => s.Type));
         }
     }
 }

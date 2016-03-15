@@ -158,6 +158,10 @@
       <Project>{90b8bd02-a12a-4618-8929-c68e5035f179}</Project>
       <Name>PointNet.CommandProcessor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PointNet.Common\PointNet.Common.csproj">
+      <Project>{b47be5da-5db1-43d6-9a0d-a68936d39dc5}</Project>
+      <Name>PointNet.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PointNet.Core\PointNet.Core.csproj">
       <Project>{717e9b90-bde5-4b20-846f-622928581fc9}</Project>
       <Name>PointNet.Core</Name>

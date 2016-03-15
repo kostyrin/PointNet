@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PointNet.Common.Enums;
 
 namespace PointNet.Web.Core.Models
 {
@@ -13,6 +14,8 @@ namespace PointNet.Web.Core.Models
         [Required]
         public string Name { get; set; }
         public int Type { get; set; } //TODO
+        [Range(1, int.MaxValue, ErrorMessage = "Select a type")]
+        public SettingsType SettingsTypes { get; set; }
         public string Key { get; set; }
         public string AppId { get; set; }
         public string Account { get; set; }
