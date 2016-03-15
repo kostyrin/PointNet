@@ -5,13 +5,18 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using PointNet.CommandProcessor.Dispatcher;
+using PointNet.Core.Common;
 using PointNet.Data.Repositories;
 using PointNet.Model;
 using PointNet.Model.Commands;
+using PointNet.Web.Core.ActionFilters;
+using PointNet.Web.Core.Extensions;
 using PointNet.Web.Core.Models;
 
 namespace PointNet.Web.Controllers
 {
+    [CompressResponse]
+    [PointNetAuthorize(Roles.User, Roles.Admin)]
     public class CustomerController : Controller
     {
         private readonly ICommandBus _commandBus;
@@ -43,16 +48,16 @@ namespace PointNet.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Create(CustomerFormModel fm)
-        {
-            var command = _mapper.Mapper.Map<CreateOrUpdateCustomerCommand>(fm);
-            //var cust = _mapper.Mapper.Map<Customer>(fm);
-            //_customerRepository.Add(cust);
-            var result = _commandBus.Submit(command);
+        //[HttpPost]
+        //public ActionResult Create(CustomerFormModel fm)
+        //{
+        //    var command = _mapper.Mapper.Map<CreateOrUpdateCustomerCommand>(fm);
+        //    //var cust = _mapper.Mapper.Map<Customer>(fm);
+        //    //_customerRepository.Add(cust);
+        //    var result = _commandBus.Submit(command);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
         public ActionResult Edit(int id)
         {
@@ -61,12 +66,23 @@ namespace PointNet.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CustomerFormModel fm)
+        public ActionResult Save(CustomerFormModel fm)
         {
-            var command = _mapper.Mapper.Map<CreateOrUpdateCustomerCommand>(fm);
-            var result = _commandBus.Submit(command);
+            if (ModelState.IsValid)
+            {
 
-            return RedirectToAction("Index");
+                var command = _mapper.Mapper.Map<CreateOrUpdateCustomerCommand>(fm);
+                //IEnumerable<ValidationResult> errors = _commandBus.Validate(command);
+                //ModelState.AddModelErrors(errors);
+                if (ModelState.IsValid)
+                {
+                    var result = _commandBus.Submit(command);
+                    if (result.Success) return RedirectToAction("Index");
+                }
+
+            }
+
+            return View(fm.CustomerId == 0 ? "Create" : "Edit", fm);
         }
 
     }

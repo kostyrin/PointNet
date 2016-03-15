@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace PointNet.Web.Core.Models
     public class CustomerSettingFormModel
     {
         public int CustomerSettingId { get; set; }
+        [Required]
         public string Name { get; set; }
         public int Type { get; set; } //TODO
         public string Key { get; set; }

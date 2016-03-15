@@ -5,8 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using PointNet.CommandProcessor.Dispatcher;
+using PointNet.Core.Common;
 using PointNet.Data.Repositories;
 using PointNet.Model.Commands;
+using PointNet.Web.Core.Extensions;
 using PointNet.Web.Core.Models;
 
 namespace PointNet.Web.Controllers
@@ -43,14 +45,14 @@ namespace PointNet.Web.Controllers
             return View(vm);
         }
 
-        public ActionResult CreateSetting(int id)
+        public ActionResult Create(int id)
         {
             var customer = _customerRepository.GetById(id);
             var vm = new CustomerSettingFormModel { CustomerId = customer.CustomerId, CustomerName = customer.Name };
             return View(vm);
         }
 
-        public ActionResult EditSetting(int id)
+        public ActionResult Edit(int id)
         {
             var setting = _customerSettingRepository.Get(s => s.Customer.CustomerId == id);
             var vm = _mapper.Mapper.Map<CustomerSettingFormModel>(setting);
@@ -58,13 +60,22 @@ namespace PointNet.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateOrEditSetting(CustomerSettingFormModel fm)
+        public ActionResult Save(CustomerSettingFormModel fm)
         {
-            var command = _mapper.Mapper.Map<CreateOrUpdateCustomerSettingCommand>(fm);
-            command.Customer = _customerRepository.GetById(fm.CustomerId);
-            var result = _commandBus.Submit(command);
+            if (ModelState.IsValid)
+            {
+                var command = _mapper.Mapper.Map<CreateOrUpdateCustomerSettingCommand>(fm);
+                command.Customer = _customerRepository.GetById(fm.CustomerId);
+                //IEnumerable<ValidationResult> errors = _commandBus.Validate(command);
+                //ModelState.AddModelErrors(errors);
+                if (ModelState.IsValid)
+                {
+                    var result = _commandBus.Submit(command);
+                    if (result.Success) return RedirectToAction("Index", new { id = fm.CustomerId });
+                }
+            }
 
-            return RedirectToAction("Index", new { id = fm.CustomerId });
+            return View(fm.CustomerSettingId == 0 ? "Create" : "Edit", fm);
         }
     }
 }

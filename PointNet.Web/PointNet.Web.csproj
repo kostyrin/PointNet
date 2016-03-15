@@ -288,8 +288,8 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
-    <Content Include="Views\Setting\CreateSetting.cshtml" />
-    <Content Include="Views\Setting\EditSetting.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

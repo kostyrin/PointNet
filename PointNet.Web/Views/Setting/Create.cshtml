@@ -7,7 +7,7 @@
 <h2>CreateSetting</h2>
 
 
-@using (Html.BeginForm("CreateOrEditSetting", "Setting")) 
+@using (Html.BeginForm("Save", "Setting", FormMethod.Post, new { @role = "form" })) 
 {
     @Html.AntiForgeryToken()
     
