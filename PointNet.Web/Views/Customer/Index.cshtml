@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Code)
         </th>
         <th>
@@ -37,11 +40,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.Type)
+        </th>
         <td>
             @Html.DisplayFor(modelItem => item.Code)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Url)
+            <a href="@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Url)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)

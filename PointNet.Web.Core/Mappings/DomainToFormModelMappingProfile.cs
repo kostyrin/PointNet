@@ -19,11 +19,12 @@ namespace PointNet.Web.Core.Mappings
 
         protected override void Configure()
         {
-            CreateMap<Customer, CustomerFormModel>();
+            CreateMap<Customer, CustomerFormModel>()
+                .ForMember(d => d.Type, o => o.MapFrom(s => s.Type));
             CreateMap<CustomerSetting, CustomerSettingFormModel>()
                 .ForMember(d => d.CustomerId, o => o.MapFrom(s => s.Customer.CustomerId))
                 .ForMember(d => d.CustomerName, o => o.MapFrom(s => s.Customer.Name))
-                .ForMember(d => d.SettingsTypes, o => o.MapFrom(s => s.Type));
+                .ForMember(d => d.SettingsType, o => o.MapFrom(s => s.Type));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace PointNet.Model
         public virtual string Url { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual Customer Parent { get; set; }
+        public virtual int Type { get; set; }
 
         public virtual IList<Customer> SubCustomers { get; set; }
         public virtual IList<CustomerSetting> Settings { get; set; }

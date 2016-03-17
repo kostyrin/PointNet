@@ -11,7 +11,7 @@ namespace PointNet.Model
     {
         public virtual int LineId { get; set; }
         public virtual string Code { get; set; }
-        public virtual string Type { get; set; }
+        public virtual int Type { get; set; }
 
         public virtual Customer Customer { get; set; }
         public virtual Event Event { get; set; }

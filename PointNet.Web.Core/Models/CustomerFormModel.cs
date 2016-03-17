@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using PointNet.Common.Enums;
 
 namespace PointNet.Web.Core.Models
 {
@@ -14,5 +15,6 @@ namespace PointNet.Web.Core.Models
         public string Code { get; set; }
         public string Url { get; set; }
         public bool IsActive { get; set; }
+        public CustomerType Type { get; set; }
     }
 }

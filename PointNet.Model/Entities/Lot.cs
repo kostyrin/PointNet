@@ -11,7 +11,7 @@ namespace PointNet.Model
         public virtual int LotId { get; set; }
         public virtual decimal Price { get; set; }
         public virtual DateTime Stamp { get; set; }
-        public virtual string Type { get; set; }
+        public virtual int Type { get; set; }
         public virtual EventLine EventLine { get; set; }
     }
 }

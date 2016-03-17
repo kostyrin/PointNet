@@ -13,9 +13,9 @@ namespace PointNet.Web.Core.Models
         public int CustomerSettingId { get; set; }
         [Required]
         public string Name { get; set; }
-        public int Type { get; set; } //TODO
+        //public int Type { get; set; } //TODO
         [Range(1, int.MaxValue, ErrorMessage = "Select a type")]
-        public SettingsType SettingsTypes { get; set; }
+        public SettingsType SettingsType { get; set; }
         public string Key { get; set; }
         public string AppId { get; set; }
         public string Account { get; set; }

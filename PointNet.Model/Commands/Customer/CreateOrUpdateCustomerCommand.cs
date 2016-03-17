@@ -15,5 +15,6 @@ namespace PointNet.Model.Commands
         public virtual string Url { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual Customer Parent { get; set; }
+        public virtual int Type { get; set; }
     }
 }

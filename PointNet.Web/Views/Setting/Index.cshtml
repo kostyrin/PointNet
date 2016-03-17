@@ -16,15 +16,8 @@
             }
             else
             {
+                @Html.HiddenFor(model => model.CustomerSettingId)
                 <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CustomerSettingId)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.CustomerSettingId)
-                    </dd>
-
                     <dt>
                         @Html.DisplayNameFor(model => model.Name)
                     </dt>
@@ -34,11 +27,11 @@
                     </dd>
 
                     <dt>
-                        @Html.DisplayNameFor(model => model.Type)
+                        @Html.DisplayNameFor(model => model.SettingsType)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.SettingsTypes)
+                        @Html.DisplayFor(model => model.SettingsType)
                     </dd>
 
                     <dt>
@@ -65,13 +58,13 @@
                         @Html.DisplayFor(model => model.Account)
                     </dd>
 
-                    <dt>
+                    @*<dt>
                         @Html.DisplayNameFor(model => model.Password)
                     </dt>
 
                     <dd>
-                        @Html.DisplayFor(model => model.Password)
-                    </dd>
+                        @Html.DisplayFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                    </dd>*@
 
                     <dt>
                         @Html.DisplayNameFor(model => model.Host)
